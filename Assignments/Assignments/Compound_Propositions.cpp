@@ -129,5 +129,3 @@ int main()
 
 	TruthTable(pNot, qNot, op);
 }// END MAIN
-
-
