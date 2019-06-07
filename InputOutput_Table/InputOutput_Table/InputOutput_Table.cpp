@@ -1,15 +1,14 @@
 #include <iostream>
 using namespace std;
 
-// Declarations
+// Function declarations
 void Toggle(bool& _var, int& _counter, int _terminal);
 bool Function(bool _a, bool _b, bool _c, bool _d, bool _e);
 bool Negation(bool _x);
 
-// Begin MAIN
 int main()
 {
-	// Declare variables
+	// Variables
 	bool a = true, b = true, c = true, d = true, e = true;
 	int a_counter = 1, b_counter = 1, c_counter = 1, d_counter = 1, e_counter = 1;
 
@@ -29,12 +28,24 @@ int main()
 		// Increment all counter variables
 		a_counter++, b_counter++, c_counter++, d_counter++, e_counter++;
 
+		// Display results
 		cout << a << " " << b << " " << c << " " << d << " " << e << "\t" << Function(a, b, c, d, e) << endl;
 	}// END FOR-LOOP
 
+	cout << system("pause");
 	return 0;
 }// End MAIN
 
+/// <summary>
+/// Toggle
+/// Inputs certain parameters by reference.
+/// Determines if variable has reached its toggle point
+/// and switches truth value if required.
+/// Returns void.
+/// </summary>
+/// <param name="_var">ref bool _var</param>
+/// <param name="_counter">ref int _counter</param>
+/// <param name="_toggle">int _toggle</param>
 void Toggle(bool& _var, int& _counter, int _toggle) {
 	// Check if variable's counter has been reached against
 	// predetermined toggle setpoint.
@@ -49,20 +60,36 @@ void Toggle(bool& _var, int& _counter, int _toggle) {
 		// Reset variable's counter.
 		_counter = 1;
 	}
-}// END TOGGLE METHOD
+}
 
-// Function METHOD
+/// <summary>
+/// Function
+/// Input parameters to computer predetermined boolean function
+/// </summary>
+/// <param name="_a">bool _a</param>
+/// <param name="_b">bool _b</param>
+/// <param name="_c">bool _c</param>
+/// <param name="_d">bool _d</param>
+/// <param name="_e">bool _e</param>
+/// <returns>bool value</returns>
 bool Function(bool _a, bool _b, bool _c, bool _d, bool _e) {
 	// (( c + ~d ) * b ) * ~( d + a * e )
 	return ((_c + Negation(_d)) * _b) * Negation((_d + _a * _e));
 }
 
-// Negation Method
+/// <summary>
+/// Negation
+/// Inputs boolean parameter and returns opposite value.
+/// </summary>
+/// <param name="_x">bool _x</param>
+/// <returns>bool x</returns>
 bool Negation(bool _x) {
+	bool x = false;
 	if (_x == true) {
-		return false;
+		x = false;
 	}
 	else if (_x == false) {
-		return true;
+		x = true;
 	}
-}// END NEGATION METHOD
+	return x;
+}
