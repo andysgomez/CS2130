@@ -31,6 +31,12 @@ int main()
 		{23,24,25}
 	};
 
+	int rows = sizeof(m2x3) / sizeof(m2x3[0]);
+	int cols = sizeof(m2x3[0]) / sizeof(m2x3[0][0]);
+
+	//cout << rows << " " << cols << endl;
+
+	/*
 	for (auto& rows : m3x3)
 	{
 		for (auto& elem : rows)
@@ -38,6 +44,7 @@ int main()
 			cout << elem << endl;
 		}
 	}
+	*/
 
 	system("pause");
 	return 0;
