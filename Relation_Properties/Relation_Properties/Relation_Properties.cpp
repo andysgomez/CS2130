@@ -1,8 +1,16 @@
 #include <iostream>
 
+std::string MatrixProperties(int _matrix[][4]);
+bool Reflexive(int _matrix[][4]);
+bool AntiReflexive(int _matrix[][4]);
+bool NeitherReflexive(int _matrix[][4]);
+bool Symmetric(int _matrix[][4]);
+bool AntiSymmetric(int _matrix[][4]);
+bool Asymmetric(int _matrix[][4]);
+
 int main()
 {
-	int m1[4][4] =
+	int A[4][4] =
 	{
 		{1,0,0,0},
 		{0,1,0,0},
@@ -10,7 +18,7 @@ int main()
 		{0,0,0,1}
 	};
 
-	int m2[4][4] =
+	int B[4][4] =
 	{
 		{0,0,0,1},
 		{0,0,1,0},
@@ -18,7 +26,7 @@ int main()
 		{1,0,0,0}
 	};
 
-	int m3[4][4] =
+	int C[4][4] =
 	{
 		{1,0,0,0},
 		{1,0,0,0},
@@ -26,7 +34,7 @@ int main()
 		{1,0,0,0}
 	};
 
-	int m4[4][4] =
+	int D[4][4] =
 	{
 		{0,0,0,0},
 		{0,0,0,0},
@@ -34,48 +42,177 @@ int main()
 		{0,0,0,0}
 	};
 
-	std::cout << "hi" << std::endl;
+	// Display A matrix
+	std::cout << "A=";
+	for (auto& row : A)
+	{
+		int rowBreak = 0;
+		for (auto& elem : row)
+		{
+			std::cout << elem;
+			if (rowBreak == 3) std::cout << std::endl;
+			rowBreak++;
+		}
+		std::cout << "  ";
+	}
 
-	system("pause");
+	std::cout << MatrixProperties(A);
+
+	// Display B matrix
+	std::cout << "\nB=";
+	for (auto& row : B)
+	{
+		int rowBreak = 0;
+		for (auto& elem : row)
+		{
+			std::cout << elem;
+			if (rowBreak == 3) std::cout << std::endl;
+			rowBreak++;
+		}
+		std::cout << "  ";
+	}
+
+	// Display C matrix
+	std::cout << "\nC=";
+	for (auto& row : C)
+	{
+		int rowBreak = 0;
+		for (auto& elem : row)
+		{
+			std::cout << elem;
+			if (rowBreak == 3) std::cout << std::endl;
+			rowBreak++;
+		}
+		std::cout << "  ";
+	}
+
+	// Display D matrix
+	std::cout << "\nD=";
+	for (auto& row : D)
+	{
+		int rowBreak = 0;
+		for (auto& elem : row)
+		{
+			std::cout << elem;
+			if (rowBreak == 3) std::cout << std::endl;
+			rowBreak++;
+		}
+		std::cout << "  ";
+	}
+
+
+	std::cout << std::endl << ("pause");
 	return 0;
 }
 
-// Reflexivity
-
-// Symmetry
+// Properties
+std::string MatrixProperties(int _matrix[][4]) {
+	std::string str;
+	Reflexive(_matrix) ? str += "Reflexive " : str += "";
+	AntiReflexive(_matrix) ? str += "Anti-Reflexive " : str += "";
+	NeitherReflexive(_matrix) ? str += "Neither Reflexive or AntiReflexive " : str += "";
+	Symmetric(_matrix) ? str += "Symmetric " : str += "";
+	AntiSymmetric(_matrix) ? str += "Anti-Symmetric " : str += "";
+	Asymmetric(_matrix) ? str += "Asymmetric " : str += "";
+	return str;
+}
 
 // Reflexive
-void Reflexive() {
-
+bool Reflexive(int _matrix[][4]) {
+	bool value = false;
+	int i = 0, j = 0;
+	for (size_t f = 0; f < sizeof(_matrix); f++)
+	{
+		if (_matrix[i][j] == 0) {
+			value = false;
+			break;
+		}
+		else if (_matrix[i][j] == 1) {
+			value = true;
+		}
+		i++, j++;
+	}
+	return value;
 }
 
 // Anti-Reflexive
-void AntiReflexive() {
+bool AntiReflexive(int _matrix[][4]) {
+	bool value = false;
+	int i = 0, j = 0;
+	for (size_t f = 0; f < sizeof(_matrix); f++)
+	{
+		if (_matrix[i][j] == 1) {
+			value = false;
+			break;
+		}
+		else if (_matrix[i][j] == 0) {
+			value = true;
+		}
+		i++, j++;
+	}
+	return value;
+}
 
+// NeitherReflexive
+bool NeitherReflexive(int _matrix[][4]) {
+	bool value = false;
+	if (!Reflexive(_matrix) && !AntiReflexive(_matrix)) {
+		value = true;
+	}
+	return value;
 }
 
 // Symmetric
-void Symmetric() {
+bool Symmetric(int _matrix[][4]) {
+	bool value = false;
 
+	/*
+		a01, a02, a03
+		a12, a13
+		a23
+	*/
+
+	if (
+		_matrix[0][1] + _matrix[1][0] == 1
+		|| _matrix[0][2] + _matrix[2][0] == 1
+		|| _matrix[0][3] + _matrix[3][0] == 1
+		|| _matrix[1][2] + _matrix[2][1] == 1
+		|| _matrix[1][3] + _matrix[3][1] == 1
+		|| _matrix[2][3] + _matrix[3][2] == 1
+		) {
+		value = false;
+		return value;
+	}
+	else {
+		value = true;
+	}
+
+	return value;
 }
 
 // Anti-Symmetric
-void AntiSymmetric() {
-
+bool AntiSymmetric(int _matrix[][4]) {
+	bool value = false;
+	if (
+		_matrix[0][1] + _matrix[1][0] == 2
+		|| _matrix[0][2] + _matrix[2][0] == 2
+		|| _matrix[0][3] + _matrix[3][0] == 2
+		|| _matrix[1][2] + _matrix[2][1] == 2
+		|| _matrix[1][3] + _matrix[3][1] == 2
+		|| _matrix[2][3] + _matrix[3][2] == 2
+		) {
+		value = false;
+		return value;
+	}
+	else {
+		value = true;
+	}
+	return value;
 }
 
 // Asymmetric
-void Asymmetric() {
-
+bool Asymmetric(int _matrix[][4]) {
+	bool value = false;
+	(AntiReflexive(_matrix) && AntiSymmetric(_matrix)) ? value = true : value = false;
+	return value;
 }
-
-/*
-Reflexive = All 1s on its main diagonal.
-Anti-Reflexive = All 0s on its main diagonal.
-*/
-
-/*
-Symmetric matrix = squre matrix nxn equals transposed
-Antisymmetric
-Asymmetric
-*/
