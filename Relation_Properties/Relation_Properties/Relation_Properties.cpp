@@ -3,7 +3,6 @@
 std::string MatrixProperties(int _matrix[][4]);
 bool Reflexive(int _matrix[][4]);
 bool AntiReflexive(int _matrix[][4]);
-bool NeitherReflexive(int _matrix[][4]);
 bool Symmetric(int _matrix[][4]);
 bool AntiSymmetric(int _matrix[][4]);
 bool Asymmetric(int _matrix[][4]);
@@ -12,33 +11,33 @@ int main()
 {
 	int A[4][4] =
 	{
-		{1,0,0,0},
-		{0,1,0,0},
-		{0,0,1,0},
-		{0,0,0,1}
+		{0,1,1,0},
+		{1,1,0,0},
+		{1,0,1,1},
+		{0,0,1,1}
 	};
 
 	int B[4][4] =
 	{
-		{0,0,0,1},
+		{0,0,1,1},
 		{0,0,1,0},
-		{0,1,0,0},
+		{0,0,0,1},
 		{1,0,0,0}
 	};
 
 	int C[4][4] =
 	{
-		{1,0,0,0},
-		{1,0,0,0},
-		{1,0,0,0},
-		{1,0,0,0}
+		{1,0,0,1},
+		{0,1,1,1},
+		{0,0,1,0},
+		{0,0,0,1}
 	};
 
 	int D[4][4] =
 	{
-		{0,0,0,0},
-		{0,0,0,0},
-		{0,0,0,0},
+		{0,1,1,1},
+		{0,0,1,0},
+		{0,0,0,1},
 		{0,0,0,0}
 	};
 
@@ -49,14 +48,13 @@ int main()
 		int rowBreak = 0;
 		for (auto& elem : row)
 		{
-			std::cout << elem;
+			std::cout << elem << " ";
 			if (rowBreak == 3) std::cout << std::endl;
 			rowBreak++;
 		}
 		std::cout << "  ";
 	}
-
-	std::cout << MatrixProperties(A);
+	std::cout << "A - " << MatrixProperties(A) << std::endl;
 
 	// Display B matrix
 	std::cout << "\nB=";
@@ -65,12 +63,13 @@ int main()
 		int rowBreak = 0;
 		for (auto& elem : row)
 		{
-			std::cout << elem;
+			std::cout << elem << " ";
 			if (rowBreak == 3) std::cout << std::endl;
 			rowBreak++;
 		}
 		std::cout << "  ";
 	}
+	std::cout << "B - " << MatrixProperties(B) << std::endl;
 
 	// Display C matrix
 	std::cout << "\nC=";
@@ -79,12 +78,13 @@ int main()
 		int rowBreak = 0;
 		for (auto& elem : row)
 		{
-			std::cout << elem;
+			std::cout << elem << " ";
 			if (rowBreak == 3) std::cout << std::endl;
 			rowBreak++;
 		}
 		std::cout << "  ";
 	}
+	std::cout << "C - " << MatrixProperties(C) << std::endl;
 
 	// Display D matrix
 	std::cout << "\nD=";
@@ -93,27 +93,41 @@ int main()
 		int rowBreak = 0;
 		for (auto& elem : row)
 		{
-			std::cout << elem;
+			std::cout << elem << " ";
 			if (rowBreak == 3) std::cout << std::endl;
 			rowBreak++;
 		}
 		std::cout << "  ";
 	}
+	std::cout << "D - " << MatrixProperties(D) << std::endl;
 
-
-	std::cout << std::endl << ("pause");
+	std::cout << std::endl;
+	system("pause");
 	return 0;
 }
 
 // Properties
 std::string MatrixProperties(int _matrix[][4]) {
 	std::string str;
+
 	Reflexive(_matrix) ? str += "Reflexive " : str += "";
 	AntiReflexive(_matrix) ? str += "Anti-Reflexive " : str += "";
-	NeitherReflexive(_matrix) ? str += "Neither Reflexive or AntiReflexive " : str += "";
-	Symmetric(_matrix) ? str += "Symmetric " : str += "";
-	AntiSymmetric(_matrix) ? str += "Anti-Symmetric " : str += "";
+
+	if (Symmetric(_matrix) && AntiSymmetric(_matrix)) {
+		str += "Anti-Symmetric ";
+	}
+	else {
+		Symmetric(_matrix) ? str += "Symmetric " : str += "";
+		AntiSymmetric(_matrix) ? str += "Anti-Symmetric " : str += "";
+	}
+
 	Asymmetric(_matrix) ? str += "Asymmetric " : str += "";
+
+	if (str == "")
+	{
+		str = "none";
+	}
+
 	return str;
 }
 
@@ -149,15 +163,6 @@ bool AntiReflexive(int _matrix[][4]) {
 			value = true;
 		}
 		i++, j++;
-	}
-	return value;
-}
-
-// NeitherReflexive
-bool NeitherReflexive(int _matrix[][4]) {
-	bool value = false;
-	if (!Reflexive(_matrix) && !AntiReflexive(_matrix)) {
-		value = true;
 	}
 	return value;
 }
