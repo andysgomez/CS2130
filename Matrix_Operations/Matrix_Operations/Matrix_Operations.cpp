@@ -49,3 +49,15 @@ int main()
 	system("pause");
 	return 0;
 }// END MAIN
+
+/*Calculate size of ROW*/
+
+/*Find size of COLUMN*/
+
+/*Test if Multiplication can be performed*/
+
+/*Test if Addition can be performed*/
+
+/*MULTIPLICATION*/
+
+/*ADDITION*/
