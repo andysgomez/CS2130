@@ -31,28 +31,26 @@ int main()
 		{23,24,25}
 	};
 
-	int rows = sizeof(m2x3) / sizeof(m2x3[0]);
+
 	int cols = sizeof(m2x3[0]) / sizeof(m2x3[0][0]);
 
 	//cout << rows << " " << cols << endl;
 
-	/*
-	for (auto& rows : m3x3)
-	{
-		for (auto& elem : rows)
-		{
-			cout << elem << endl;
-		}
-	}
-	*/
+
 
 	system("pause");
 	return 0;
 }// END MAIN
 
 /*Calculate size of ROW*/
+int FindRows(int _matrix) {
+	int rows = sizeof(_matrix) / sizeof(_matrix[0]);
+}
 
 /*Find size of COLUMN*/
+int FindColumns() {
+
+}
 
 /*Test if Multiplication can be performed*/
 
@@ -61,3 +59,14 @@ int main()
 /*MULTIPLICATION*/
 
 /*ADDITION*/
+
+/*Print matrix*/
+void PrintMatrix() {
+	/*for (auto& rows : _matrix[0][])
+	{
+		for (auto& elem : rows)
+		{
+			cout << elem << endl;
+		}
+	}*/
+}

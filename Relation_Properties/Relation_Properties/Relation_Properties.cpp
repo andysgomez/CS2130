@@ -13,34 +13,10 @@ int main()
 {
 	int A[4][4] =
 	{
-		{0,1,1,0},
 		{1,1,0,0},
-		{1,0,1,1},
-		{0,0,1,1}
-	};
-
-	int B[4][4] =
-	{
+		{0,1,0,0},
 		{0,0,1,1},
-		{0,0,1,0},
-		{0,0,0,1},
-		{1,0,0,0}
-	};
-
-	int C[4][4] =
-	{
-		{1,0,0,1},
-		{0,1,1,1},
-		{0,0,1,0},
 		{0,0,0,1}
-	};
-
-	int D[4][4] =
-	{
-		{0,1,1,1},
-		{0,0,1,0},
-		{0,0,0,1},
-		{0,0,0,0}
 	};
 
 	// Display A matrix
@@ -57,51 +33,6 @@ int main()
 		std::cout << "  ";
 	}
 	std::cout << "A - " << MatrixProperties(A) << std::endl;
-
-	// Display B matrix
-	std::cout << "\nB=";
-	for (auto& row : B)
-	{
-		int rowBreak = 0;
-		for (auto& elem : row)
-		{
-			std::cout << elem << " ";
-			if (rowBreak == 3) std::cout << std::endl;
-			rowBreak++;
-		}
-		std::cout << "  ";
-	}
-	std::cout << "B - " << MatrixProperties(B) << std::endl;
-
-	// Display C matrix
-	std::cout << "\nC=";
-	for (auto& row : C)
-	{
-		int rowBreak = 0;
-		for (auto& elem : row)
-		{
-			std::cout << elem << " ";
-			if (rowBreak == 3) std::cout << std::endl;
-			rowBreak++;
-		}
-		std::cout << "  ";
-	}
-	std::cout << "C - " << MatrixProperties(C) << std::endl;
-
-	// Display D matrix
-	std::cout << "\nD=";
-	for (auto& row : D)
-	{
-		int rowBreak = 0;
-		for (auto& elem : row)
-		{
-			std::cout << elem << " ";
-			if (rowBreak == 3) std::cout << std::endl;
-			rowBreak++;
-		}
-		std::cout << "  ";
-	}
-	std::cout << "D - " << MatrixProperties(D) << std::endl;
 
 	std::cout << std::endl;
 	system("pause");
